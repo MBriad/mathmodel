@@ -1,0 +1,26 @@
+{
+  "风化×类型": {
+    "chi2_p": 0.0195,
+    "fisher_p": 0.0113,
+    "significant": true
+  },
+  "风化×纹饰": {
+    "chi2": 4.96,
+    "p": 0.0839,
+    "cramers_v": 0.292,
+    "significant": false
+  },
+  "风化×颜色": {
+    "chi2": 0.07,
+    "p": 0.9951,
+    "cramers_v": 0.035,
+    "significant": false,
+    "merged_rare": [
+      "紫",
+      "浅绿",
+      "深蓝",
+      "黑",
+      "绿"
+    ]
+  }
+}

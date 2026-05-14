@@ -1,0 +1,33 @@
+[project]
+name = "mathmodel"
+version = "0.1.0"
+description = "CUMCM Problem C — Ancient Chinese Glass Artifacts Analysis"
+requires-python = ">=3.11"
+dependencies = [
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.9",
+    "numpy>=2.4.4",
+    "olefile>=0.47",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.2",
+    "scikit-learn>=1.8.0",
+    "scipy>=1.17.1",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.409",
+    "rich>=15.0.0",
+    "ruff>=0.15.12",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.pyright]
+typeCheckingMode = "basic"
+pythonVersion = "3.11"

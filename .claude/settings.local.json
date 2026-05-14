@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(Get-ChildItem *)",
+      "PowerShell(Out-File *)",
+      "PowerShell(C:\\\\msys64\\\\ucrt64\\\\bin\\\\python.exe -m ensurepip 2>&1; C:\\\\msys64\\\\ucrt64\\\\bin\\\\python.exe -m pip install PyPDF2 --quiet 2>&1 | Select-Object -Last 5)",
+      "PowerShell(uv *)",
+      "PowerShell(conda *)",
+      "Bash(Select-Object FullName, Length)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Format-Table -AutoSize -Wrap)",
+      "Bash(uv run *)",
+      "Bash(Select-Object Name, Length, LastWriteTime)",
+      "Bash(uv add *)",
+      "Bash(git remote *)"
+    ]
+  }
+}
