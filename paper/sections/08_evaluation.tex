@@ -1,0 +1,45 @@
+% ============================================
+% 8 模型评价与改进
+% ============================================
+\section{模型评价与改进}
+
+\subsection{模型优势}
+
+\begin{table}[H]
+    \centering
+    \caption{各问题的方法与优势总结}
+    \label{tab:model_strength}
+    \begin{tabular}{p{1.5cm} p{5cm} p{6cm}}
+        \toprule
+        \textbf{问题} & \textbf{方法} & \textbf{优势} \\
+        \midrule
+        1a & Fisher 精确检验 $+$ 列联表 & 适用于小样本、无需分布假设、结果可解释性强 \\
+        1b & Mann-Whitney U $+$ Bonferroni & 非参数方法，适用于非正态的化学成分数据 \\
+        1c & 分类型差值校正 & 直观可解释、关键氧化物预测精度高（$< 1.5\%$） \\
+        2a & 决策树（BaO 单规则） & 简洁（一条规则）、对风化鲁棒、准确率 $> 90\%$ \\
+        2b & PCA $+$ $K$-means $+$ Bootstrap & 多维度验证、敏感性定量化、结果可复现 \\
+        3 & 四法共识 & 避免单一方法偏差、提供置信度分级 \\
+        4 & CLR $+$ Fisher $z$ & 消除闭合效应、统计检验严格、差异可量化 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{局限性}
+
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{小样本问题}：高钾玻璃仅 18 个采样点（风化仅 6 个），亚类分析（每类 3$\sim$4 个样本）统计说服力不足。建议收集更多高钾玻璃样本。
+    \item \textbf{差值校正模型简化}：假定风化效应为简单加减，未考虑风化动力学过程中的非线性效应（如多阶段风化、元素交互作用）。
+    \item \textbf{铅钡校正样本不足}：仅 2 对配对样本用于铅钡风化校正，BaO 和 $\text{P}_2\text{O}_5$ 预测精度有限。
+    \item \textbf{亚类本质为风化梯度}：铅钡的 3 个亚类实质是风化连续谱的分段，而非独立的配方类型。后续研究应对未风化铅钡玻璃单独聚类。
+    \item \textbf{CLR 零值处理}：CLR 变换对零值敏感，替换为半最小值是一种近似处理，可能引入偏差。
+\end{enumerate}
+
+\subsection{改进方向}
+
+\begin{enumerate}[label=(\arabic*)]
+    \item 引入风化动力学微分方程模型，更精确地刻画多阶段风化过程
+    \item 将亚类分析限定在未风化样品，以识别真正的配方多样性
+    \item 采用贝叶斯方法量化小样本下的分类不确定性
+    \item 利用 A2 异常样品探索是否存在"纯铅玻璃"第三类型
+    \item 使用 Dirichlet 分布或 Aitchison 几何完整处理成分数据的统计推断
+\end{enumerate}

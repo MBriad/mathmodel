@@ -1,0 +1,150 @@
+% ============================================
+% 附录
+% ============================================
+\section*{附录}
+\addcontentsline{toc}{section}{附录}
+
+\subsection*{附录 A：程序模块清单}
+\addcontentsline{toc}{subsection}{附录 A：程序模块清单}
+
+\begin{table}[H]
+    \centering
+    \caption{程序模块清单}
+    \label{tab:modules}
+    \begin{tabular}{p{4cm} p{5.5cm} p{4.5cm}}
+        \toprule
+        \textbf{文件} & \textbf{功能} & \textbf{调用的库} \\
+        \midrule
+        \texttt{src/data\_loader.py} & 公用数据加载与预处理 & pandas, re \\
+        \texttt{src/problem1a.py} & 风化关联分析（列联表 $+$ Fisher/卡方检验） & scipy.stats, matplotlib \\
+        \texttt{src/problem1b.py} & 风化前后化学成分统计规律 & scipy.stats, matplotlib \\
+        \texttt{src/problem1c.py} & 风化前成分预测（差值校正模型） & numpy, pandas, matplotlib \\
+        \texttt{src/problem2a.py} & 分类规律分析（M-W $+$ 决策树 $+$ LDA） & scipy.stats, scikit-learn \\
+        \texttt{src/problem2b.py} & 亚类划分（PCA $+$ $K$-means） & scikit-learn (PCA, KMeans, StandardScaler) \\
+        \texttt{src/problem3.py} & 未知样品分类（四法共识 $+$ 敏感性） & scikit-learn \\
+        \texttt{src/problem4.py} & 关联关系分析（CLR $+$ Pearson/Spearman） & scipy.stats, matplotlib \\
+        \texttt{src/validate.py} & 数据验证脚本 & pandas \\
+        \texttt{src/test\_critical.py} & 关键假设检验 & pandas, numpy \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+所有程序使用 Python 3.11，环境管理使用 uv，依赖见 \texttt{pyproject.toml}。
+
+\subsection*{附录 B：支撑数据清单}
+\addcontentsline{toc}{subsection}{附录 B：支撑数据清单}
+
+\begin{table}[H]
+    \centering
+    \caption{支撑数据文件清单}
+    \label{tab:data_files}
+    \begin{tabular}{p{7cm} p{6cm}}
+        \toprule
+        \textbf{文件} & \textbf{内容} \\
+        \midrule
+        \texttt{analysis/problem1c\_predictions.csv} & 42 个风化样品的风化前后成分预测对照表 \\
+        \texttt{analysis/problem3\_classification.csv} & 8 个未知样品的四法分类结果 \\
+        \texttt{analysis/problem1a\_results.json} & 风化关联检验统计量 \\
+        \texttt{analysis/problem1b\_results.json} & 风化前后化学成分分组统计及风化效应向量 \\
+        \texttt{analysis/problem2a\_results.json} & 单氧化物判别力（AUC, Cohen's $d$）及分类器性能 \\
+        \texttt{analysis/problem2b\_results.json} & 亚类划分结果（聚类标签、轮廓系数、敏感性指标） \\
+        \texttt{analysis/problem3\_results.json} & 分类共识、阈值、方法间一致性矩阵 \\
+        \texttt{analysis/problem4\_results.json} & 显著关联差异对及风化分层相关系数 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection*{附录 C：图表清单}
+\addcontentsline{toc}{subsection}{附录 C：图表清单}
+
+\begin{longtable}{c p{6cm} p{6cm}}
+    \toprule
+    \textbf{图号} & \textbf{文件} & \textbf{内容} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{图号} & \textbf{文件} & \textbf{内容} \\
+    \midrule
+    \endhead
+    图 1 & \texttt{fig1a\_weathering\_relations.png} & 风化与类型/纹饰/颜色的堆叠柱状图 \\
+    图 2 & \texttt{fig1b\_boxplots.png} & 4 组 $\times$ 10 种氧化物箱线图 \\
+    图 3 & \texttt{fig1b\_radar.png} & 4 组化学成分雷达图 \\
+    图 4 & \texttt{fig1b\_diff\_bar.png} & 风化效应差值棒图（高钾 vs 铅钡） \\
+    图 5 & \texttt{fig1c\_predictions.png} & 风化前成分预测对比（配对验证 $+$ 校正向量） \\
+    图 6 & \texttt{fig2a\_discrimination.png} & 单氧化物 AUC $+$ 散点图 \\
+    图 7 & \texttt{fig2a\_roc.png} & ROC 曲线对比 \\
+    图 8 & \texttt{fig2b\_高钾\_subclass.png} & 高钾亚类（PCA 散点 $+$ 肘部法则 $+$ 雷达图） \\
+    图 9 & \texttt{fig2b\_铅钡\_subclass.png} & 铅钡亚类（PCA 散点 $+$ 肘部法则 $+$ 雷达图） \\
+    图 10 & \texttt{fig3\_classification.png} & 未知样品分类（PbO-BaO 散点 $+$ 阈值敏感性） \\
+    图 11 & \texttt{fig4\_correlation\_heatmaps.png} & 4 组 CLR 相关热力图 \\
+    图 12 & \texttt{fig4\_difference\_network.png} & 类型间关联差异热力图 $+$ 关联网络 \\
+    \bottomrule
+    \caption{图表清单}
+    \label{tab:figures_list}
+\end{longtable}
+
+\subsection*{附录 D：部分源代码}
+\addcontentsline{toc}{subsection}{附录 D：部分源代码}
+
+此处仅展示核心算法代码，完整程序见支撑材料。
+
+\subsubsection*{数据加载模块（data\_loader.py）}
+
+\begin{lstlisting}[language=Python, caption=数据加载与预处理]
+import pandas as pd
+import re
+
+def load_metadata(path):
+    """加载文物元数据"""
+    df = pd.read_csv(path, encoding='utf-8')
+    return df
+
+def load_composition(path):
+    """加载化学成分数据"""
+    df = pd.read_csv(path, encoding='utf-8')
+    return df
+
+def filter_valid_samples(df):
+    """过滤有效样品 (85%~105%)"""
+    comp_cols = [c for c in df.columns if c not in
+                 ['编号', '采样点', '文物编号', '风化状态', '类型']]
+    sums = df[comp_cols].sum(axis=1)
+    mask = (sums >= 85) & (sums <= 105)
+    return df[mask].copy()
+\end{lstlisting}
+
+\subsubsection*{决策树分类（problem2a.py 核心片段）}
+
+\begin{lstlisting}[language=Python, caption=决策树分类规则]
+from sklearn.tree import DecisionTreeClassifier
+
+# 训练单特征决策树
+clf = DecisionTreeClassifier(max_depth=3, random_state=42)
+clf.fit(X_train[['BaO']], y_train)
+
+# 提取规则: BaO <= 3.14% => 高钾
+threshold = clf.tree_.threshold[0]
+# threshold = 3.14
+\end{lstlisting}
+
+\subsubsection*{CLR 变换（problem4.py 核心片段）}
+
+\begin{lstlisting}[language=Python, caption=CLR 变换与相关分析]
+import numpy as np
+from scipy.stats import pearsonr
+
+def clr_transform(data):
+    """Centered log-ratio 变换"""
+    data = data.copy()
+    data[data == 0] = data[data > 0].min().min() / 2
+    gmean = np.exp(np.log(data).mean(axis=1))
+    return np.log(data.div(gmean, axis=0))
+
+def fisher_z_test(r1, r2, n1, n2):
+    """Fisher z 检验比较两个相关系数"""
+    z1 = np.arctanh(r1)
+    z2 = np.arctanh(r2)
+    se = np.sqrt(1/(n1-3) + 1/(n2-3))
+    z = (z1 - z2) / se
+    return z
+\end{lstlisting}

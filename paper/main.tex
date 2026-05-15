@@ -1,0 +1,114 @@
+% ============================================
+% 基于统计建模与机器学习的古代玻璃制品成分分析与鉴别
+% 2022年高教社杯全国大学生数学建模竞赛 C题
+% ============================================
+
+\documentclass[a4paper,12pt]{ctexart}
+
+% --------------------
+% 宏包导入
+% --------------------
+\usepackage{amsmath}      % 数学公式
+\usepackage{amssymb}      % 数学符号扩展
+\usepackage{graphicx}     % 插入图片
+\usepackage{geometry}     % 页面布局
+\usepackage{hyperref}     % 超链接
+\usepackage{caption}      % 图表标题样式
+\usepackage{booktabs}     % 三线表
+\usepackage{float}        % 浮动体定位 [H]
+\usepackage{multirow}     % 表格多行合并
+\usepackage{listings}     % 代码块
+\usepackage{xcolor}       % 颜色
+\usepackage{enumitem}     % 自定义列表
+\usepackage{longtable}    % 跨页长表格
+\usepackage{array}        % 表格列宽调整
+\usepackage{ulem}         % 文本修饰
+\usepackage{makecell}     % 表格单元格换行
+
+% --------------------
+% 页面设置 (format2022 标准)
+% --------------------
+\geometry{left=3.17cm, right=3.17cm, top=2.54cm, bottom=2.54cm}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan,
+    pdftitle={基于统计建模与机器学习的古代玻璃制品成分分析与鉴别},
+    bookmarks=true,
+}
+
+% 代码块样式
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{gray},
+    backgroundcolor=\color{lightgray!20},
+    frame=single,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    captionpos=b,
+}
+
+% --------------------
+% 自定义命令
+% --------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+
+\begin{document}
+
+% ============================================
+% 首页：标题 + 摘要
+% ============================================
+\title{
+    \textbf{\heiti{\zihao{3} 基于统计建模与机器学习的\\[0.3cm]古代玻璃制品成分分析与鉴别}}
+}
+\author{李梓涵\quad 周易天\quad 史子贤}
+\date{}
+
+\maketitle
+
+\thispagestyle{empty}
+
+% 摘要
+\begin{center}
+    \zihao{4}\heiti 摘\quad 要
+\end{center}
+
+针对古代玻璃制品化学成分的分类与鉴别问题，本文建立了从风化分析、分类判别到关联挖掘的完整建模体系。
+
+\textbf{问题1（风化规律与预测）：}采用列联表分析与 Fisher 精确检验，发现玻璃类型是影响风化的显著因素（$p = 0.0113$），铅钡玻璃风化率（$70.0\%$）远高于高钾玻璃（$33.3\%$）；纹饰（$p = 0.084$）和颜色（$p = 0.995$）与风化无显著关联。基于 Mann-Whitney U 检验揭示了两种玻璃截然不同的风化机制——高钾玻璃以碱金属淋溶为主导（$\text{K}_2\text{O}$ 流失 $94.2\%$，$\text{SiO}_2$ 相对富集 $38.2\%$），铅钡玻璃以 $\text{SiO}_2$ 流失与 PbO 富集为主导（$\text{SiO}_2$ $-37.1\%$，PbO $+56.3\%$）。建立了分类型差值校正模型，对风化样品进行风化前成分预测，关键氧化物（$\text{SiO}_2$、PbO）预测误差 $< 1.5\%$。
+
+\textbf{问题2（分类规律与亚类划分）：}通过 Mann-Whitney U 检验与 ROC 分析，发现 BaO 和 PbO 对两类玻璃具有完美判别力（$\text{AUC} = 1.0$）。建立决策树分类规则"$\text{BaO} \leq 3.14\% \rightarrow$ 高钾"，对未风化样品准确率 $92\%$，对风化样品仍保持 $90.5\%$。采用 PCA 降维结合 K-means 聚类进行亚类划分，高钾玻璃分为 4 个亚类（轮廓系数 $0.514$），铅钡玻璃分为 3 个亚类（轮廓系数 $0.263$），Bootstrap 重采样验证显示亚类结构稳健。
+
+\textbf{问题3（未知类别鉴别）：}采用 BaO 规则、PbO 规则、决策树、LDA 四法共识对 8 个未知样品进行分类。判定 A1、A2、A5、A6、A7 为高钾玻璃，A3、A4、A8 为铅钡玻璃。阈值 $\pm 20\%$ 扰动下分类结果不变，验证了模型的鲁棒性。发现 A2（PbO $34.3\%$、BaO $0$）为异常样品，可能代表新的玻璃类型。
+
+\textbf{问题4（关联关系分析）：}基于 CLR（centered log-ratio）变换消除成分数据闭合效应，计算 Pearson 与 Spearman 相关矩阵。Fisher $z$ 检验发现 18 对氧化物关联在两类玻璃间存在显著差异（$|z| > 2$），揭示高钾玻璃关联网络以风化淋溶为主导，铅钡玻璃以原始矿物组合为主导——两种玻璃的化学体系本质不同。
+
+\vspace{1cm}
+\noindent \textbf{关键词：}古代玻璃；成分分析；风化校正；亚类划分；CLR变换；决策树分类
+
+\newpage
+
+% ============================================
+% 正文章节
+% ============================================
+\pagestyle{plain}
+\setcounter{page}{1}
+
+\input{sections/01_restatement}
+\input{sections/02_analysis}
+\input{sections/03_assumptions}
+\input{sections/04_problem1}
+\input{sections/05_problem2}
+\input{sections/06_problem3}
+\input{sections/07_problem4}
+\input{sections/08_evaluation}
+\input{sections/09_references}
+\input{sections/10_appendix}
+
+\end{document}
